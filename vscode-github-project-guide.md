@@ -116,6 +116,10 @@ GitHub maintains official templates for every language/framework:
 
 #### Universal Entries (Add These to Any Project)
 
+These entries are **not language-specific** — they apply to every project type. After pasting your language-specific template (e.g., C++, Python, Node.js) into your `.gitignore` file, **append the following lines at the bottom of the same `.gitignore` file**. This ensures OS junk files, IDE settings, and secrets are always excluded regardless of your project type.
+
+Copy and paste these lines at the end of your `.gitignore`:
+
 ```gitignore
 # OS files
 .DS_Store
@@ -134,6 +138,8 @@ Thumbs.db
 *.pem
 *.key
 ```
+
+> **In summary:** Your `.gitignore` should contain **language-specific patterns first** (from the templates above), followed by **these universal entries** at the bottom. You only need one `.gitignore` file — everything goes in the same file.
 
 ---
 
