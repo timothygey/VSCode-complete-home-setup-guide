@@ -40,6 +40,19 @@ python -m venv venv
 | Windows PowerShell | `.\venv\Scripts\Activate.ps1` |
 | Git Bash / Linux / macOS | `source venv/bin/activate` |
 
+> **⚠️ Windows users — VSCode opens PowerShell, not CMD:**
+> When you press `` Ctrl + ` `` in VS Code, the integrated terminal opens **PowerShell** by default (you'll see a `PS` prefix in the prompt), **not** Windows Command Prompt. Use the PowerShell activation command above.
+>
+> If you get a script execution error the first time, you need to allow local scripts to run. Do this **once**:
+> 1. Open a **new PowerShell window as Administrator** (search "PowerShell" in the Start menu → right-click → **Run as administrator**)
+> 2. Run:
+>    ```powershell
+>    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+>    ```
+> 3. Close the Administrator window and return to VS Code. Running `.\venv\Scripts\Activate.ps1` will now work every time.
+>
+> Your prompt will change to `(venv) PS C:\...>` confirming the environment is active.
+
 You should see `(venv)` appear in your terminal prompt.
 
 **4. Upgrade pip:**
@@ -647,6 +660,8 @@ code C:\path\to\your\project
 
 Press `` Ctrl + ` `` to open the integrated terminal.
 
+> **📝 Note:** VS Code's integrated terminal opens **PowerShell** by default on Windows (you'll see the `PS` prefix), **not** Windows Command Prompt. Keep this in mind when choosing your activation command below.
+
 #### Step 3 — Activate the Virtual Environment
 
 **Windows CMD:**
@@ -837,9 +852,14 @@ source venv/bin/activate
 ```
 
 **PowerShell script execution error?**
+
+> **📝 Reminder:** VS Code's integrated terminal opens **PowerShell** by default on Windows (not CMD). If you see this error, it means PowerShell's script execution policy is blocking the activation script.
+
+Fix it **once** by opening a **new PowerShell window as Administrator** (Start menu → search "PowerShell" → right-click → **Run as administrator**), then run:
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
+Close the Administrator window, return to VS Code, and activation will work from then on.
 
 ---
 
