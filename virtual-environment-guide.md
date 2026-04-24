@@ -236,6 +236,24 @@ venv/
 
 > **Naming convention:** The folder is commonly named `venv`, `.venv`, or `env`. Use `venv` for simplicity.
 
+> **📁 One project = one folder = one venv (Best Practice):**
+> Each Python project should live in its **own separate folder** with its own `venv` inside it. Never nest a second project inside an existing project folder.
+>
+> ```
+> C:\Users\timmy\Desktop\Coding\
+> ├── project_one\             ← Project 1
+> │   ├── venv\                ← venv for Project 1 only
+> │   ├── main.py
+> │   └── requirements.txt
+> │
+> └── project_two\             ← Project 2 (separate folder)
+>     ├── venv\                ← venv for Project 2 only
+>     ├── main.py
+>     └── requirements.txt
+> ```
+>
+> This keeps dependencies fully isolated — each project can use different package versions without conflicts. Every time you start a new Python project: create a new folder, open it in VS Code, and run `python -m venv venv` inside it.
+
 #### Step 2 — Activate the Virtual Environment
 
 You **must activate** the environment before installing packages or running your code.
