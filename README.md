@@ -1,20 +1,93 @@
-# VS Code Complete Setup & Configuration Guide
+# VS Code Complete Home Setup Guide
 
-A single, comprehensive markdown guide covering everything you need to set up and configure Visual Studio Code on Windows — from clean uninstall to a fully working development environment.
+A collection of comprehensive, copy-paste-ready markdown guides for setting up a complete Windows development environment from scratch — covering VS Code configuration, Git/SSH, project scaffolding, and virtual environments.
 
-## 📄 Guide Contents
+> **Target OS:** Windows 10/11  
+> **Author:** timothygey | Last Updated: April 2026
 
-The guide ([`VSCode_Complete_Setup_Guide.md`](VSCode_Complete_Setup_Guide.md)) covers:
+---
 
-1. **Clean Uninstall of VS Code** — removing the application, leftover folders, registry entries, and PATH cleanup
-2. **Roo Code Setup** — installing and configuring the AI coding assistant extension with API providers
-3. **Obtaining API Keys** — step-by-step instructions for Anthropic (Claude), OpenAI, Google Gemini, OpenRouter, and free local alternatives (Ollama, LM Studio)
-4. **MCP Servers** — what they are and when you need them
-5. **Python Language Servers** — Pylance vs Pyright (the Python equivalent of clangd)
-6. **Python 3 & Pylance Installation** — complete walkthrough from downloading Python to running your first script
-7. **clangd Extension** — C/C++ language server setup, supported languages, and compilation database configuration
-8. **Rainbow CSV Extension** — installation and usage for CSV/TSV column highlighting and RBQL queries
-9. **Remote - SSH Extension** — connecting to remote machines, SSH key authentication, and multi-host configuration
-10. **GitHub in VS Code** — clone, commit, push, pull requests, and authentication options
+## 📚 Guides in this Repo
 
-All commands and code snippets are copy-paste ready.
+### 1. [`vscode-complete-setup-guide.md`](vscode-complete-setup-guide.md)
+**VS Code Installation, Extensions & Configuration**
+
+Everything needed to get VS Code fully configured on a clean Windows machine:
+
+- Clean uninstall of VS Code (app, user data, registry, PATH)
+- Roo Code AI assistant — installation and API provider configuration
+- Obtaining API keys — Anthropic (Claude), OpenAI, Google Gemini, OpenRouter, and free local alternatives (Ollama, LM Studio)
+- MCP Servers — what they are and when you need them
+- Python language servers — Pylance vs Pyright explained
+- Python 3 & Pylance — full installation walkthrough
+- Upgrading Python on Windows — fixing PATH, updating pip, cleaning old versions
+- clangd extension — C/C++ language server, supported languages, compilation database setup
+- Rainbow CSV extension — CSV/TSV column highlighting and RBQL queries
+- Remote - SSH extension — connecting to remote machines, SSH key auth, multi-host config
+- GitHub in VS Code — clone, commit, push, pull requests, authentication
+
+---
+
+### 2. [`git-setup-guide.md`](git-setup-guide.md)
+**Git Identity, SSH Authentication & Daily Workflow**
+
+One-time Git configuration and SSH setup to authenticate with GitHub:
+
+- Configuring Git identity (name, email) to match your GitHub account
+- Setting the default branch name to `main`
+- Configuring line endings for Windows (`core.autocrlf`)
+- SSH key generation (`ed25519`) and linking to GitHub
+- Verifying SSH authentication
+- Daily Git workflow reference (add → commit → push → pull)
+- Common Git commands cheat sheet (branching, merging, stashing, history)
+
+---
+
+### 3. [`vscode-github-project-guide.md`](vscode-github-project-guide.md)
+**Creating Projects & Pushing to GitHub**
+
+Step-by-step workflow for starting any new project in VS Code and getting it onto GitHub:
+
+- Creating a new empty repository on GitHub
+- Setting up `.gitignore` (with templates for general, C++, and Python projects)
+- Initialising Git locally and linking to the remote
+- First commit and push
+- **Part 1 — General project setup** (any language/framework)
+- **Part 2 — C++ project setup** (folder structure, `tasks.json`, `launch.json`)
+- **Part 3 — Python project setup** (virtual environment, interpreter selection)
+- Full Git version control commands reference
+- Daily workflow quick-reference diagram
+
+---
+
+### 4. [`virtual-environment-guide.md`](virtual-environment-guide.md)
+**Virtual Environments Across Languages & Platforms**
+
+Comprehensive guide to isolating project dependencies so they never conflict:
+
+- Quick-start setup for Python and Node.js (< 2 minutes)
+- **Part 1 — Python virtual environments** (`venv`) — create, activate, freeze, reproduce
+- **Part 2 — Node.js environment isolation** (`npm`, `nvm`, `.nvmrc`)
+- **Part 3 — Other languages & platforms** (Ruby `bundler`, Java Maven/Gradle, Rust `cargo`, Docker)
+- **Part 4 — Daily workflow** — resuming work in VS Code with an active environment
+- **Part 5 — Troubleshooting** — missing dependencies, broken environments, interpreter mismatches
+- **Part 6 — What NEVER to do** in a virtual environment
+- **Part 7 — Q&A** — installing, upgrading, and managing packages
+
+---
+
+## 🗺️ Recommended Reading Order
+
+If you're setting up a new machine from scratch, follow the guides in this order:
+
+```
+1. vscode-complete-setup-guide.md   ← Install & configure VS Code + extensions
+        ↓
+2. git-setup-guide.md               ← Configure Git identity & SSH authentication
+        ↓
+3. vscode-github-project-guide.md   ← Create your first project and push to GitHub
+        ↓
+4. virtual-environment-guide.md     ← Isolate dependencies for Python / Node.js projects
+```
+
+All commands and code snippets throughout the guides are copy-paste ready.

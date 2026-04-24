@@ -14,10 +14,11 @@
 4. [MCP Servers — Do You Need Them?](#4-mcp-servers--do-you-need-them)
 5. [Python Language Servers — clangd Equivalent for Python](#5-python-language-servers--clangd-equivalent-for-python)
 6. [Installing Python 3 & Pylance on VS Code (Windows)](#6-installing-python-3--pylance-on-vs-code-windows)
-7. [What is the clangd Extension?](#7-what-is-the-clangd-extension)
-8. [Rainbow CSV Extension](#8-rainbow-csv-extension)
-9. [Remote - SSH Extension](#9-remote---ssh-extension)
-10. [Using GitHub in VS Code](#10-using-github-in-vs-code)
+7. [Upgrading Python on Windows](#7-upgrading-python-on-windows)
+8. [What is the clangd Extension?](#8-what-is-the-clangd-extension)
+9. [Rainbow CSV Extension](#9-rainbow-csv-extension)
+10. [Remote - SSH Extension](#10-remote---ssh-extension)
+11. [Using GitHub in VS Code](#11-using-github-in-vs-code)
 
 ---
 
@@ -516,7 +517,175 @@ Hello, World!
 
 ---
 
-## 7. What is the clangd Extension?
+## 7. Upgrading Python on Windows
+
+> **When to use this:** Follow this guide whenever a new stable Python version is released and you want to upgrade your system-wide Python installation.
+
+### Python Release Cycle
+
+Python releases a new minor version every October. Use this table to track support status:
+
+| Version | Release | Status |
+|---|---|---|
+| `3.12` | October 2023 | Security fixes only |
+| `3.13` | October 2024 | Bug fixes & security |
+| `3.14` | October 2025 | Active (current stable) |
+| `3.15` | ~October 2026 | In development |
+
+Always install from the official site: **https://www.python.org/downloads/**
+
+---
+
+### Step 1 — Check Your Current Python Version
+
+Open **Command Prompt** and run:
+
+```cmd
+python --version
+pip --version
+where python
+```
+
+Note the install path (e.g. `C:\Users\<YourUser>\AppData\Local\Programs\Python\Python313\`).
+
+---
+
+### Step 2 — Download the New Python Installer
+
+1. Go to **https://www.python.org/downloads/**
+2. Click the latest stable release (e.g. `Python 3.14.x`)
+3. Scroll to **Files** and download: **Windows installer (64-bit)** → `python-3.14.x-amd64.exe`
+
+---
+
+### Step 3 — Run the Installer
+
+1. **Right-click** the `.exe` → **Run as administrator**
+2. On the first screen:
+   - ✅ Check **"Add python.exe to PATH"**
+   - ✅ Check **"Install launcher for all users"**
+3. Click **"Customize installation"**
+4. **Optional Features** — ensure all are checked (especially `pip`)
+5. **Advanced Options**:
+   - ✅ Check **"Install for all users"** (system-wide)
+   - ✅ Check **"Add Python to environment variables"**
+   - Install path: `C:\Program Files\Python314\`
+6. Click **Install**
+
+> **Note:** If the installer shows a **"Modify Setup"** screen instead of the normal install wizard, it means that version is already installed. Click **Cancel** — nothing needs to be done.
+
+---
+
+### Step 4 — Fix the PATH (if needed)
+
+After install, open a **new** Command Prompt and run `python --version`. If it still shows the old version:
+
+**Option A — GUI:**
+1. Press `Win + R` → type `sysdm.cpl` → Enter
+2. **Advanced** tab → **Environment Variables...**
+3. Under **User variables**, select `Path` → **Edit**
+4. Add these two entries (replace `314` with your new version number):
+   - `C:\Users\<YourUser>\AppData\Local\Programs\Python\Python314\`
+   - `C:\Users\<YourUser>\AppData\Local\Programs\Python\Python314\Scripts\`
+5. Use **Move Up** to place both entries **above** the old Python entries
+6. Click **OK** → **OK** → **OK**
+
+**Option B — PowerShell (run as Administrator):**
+
+```powershell
+$oldPath = [Environment]::GetEnvironmentVariable("Path", "User")
+$py314 = "C:\Users\$env:USERNAME\AppData\Local\Programs\Python\Python314"
+$py314scripts = "$py314\Scripts"
+$newPath = "$py314;$py314scripts;" + ($oldPath -replace [regex]::Escape($py314 + ";"), "" -replace [regex]::Escape($py314scripts + ";"), "")
+[Environment]::SetEnvironmentVariable("Path", $newPath, "User")
+Write-Host "Done! Open a new terminal and run: python --version"
+```
+
+---
+
+### Step 5 — Verify Python is Updated
+
+Open a **new** Command Prompt:
+
+```cmd
+python --version
+where python
+py --version
+```
+
+Expected output:
+```
+Python 3.14.x
+C:\Users\<YourUser>\AppData\Local\Programs\Python\Python314\python.exe
+Python 3.14.x
+```
+
+---
+
+### Step 6 — Update pip
+
+```cmd
+python -m pip install --upgrade pip
+pip --version
+```
+
+---
+
+### Step 7 — (Optional) Reinstall Global Packages
+
+Export your old packages **before** uninstalling the old Python:
+
+```cmd
+pip freeze > old_packages.txt
+```
+
+Then reinstall in the new Python:
+
+```cmd
+pip install -r old_packages.txt
+```
+
+> ⚠️ Some packages may not yet support the latest Python — check for errors and skip incompatible ones.
+
+---
+
+### Step 8 — (Optional) Recreate Project Virtual Environments
+
+Virtual environments are tied to a specific Python version. For each project:
+
+```cmd
+cd C:\path\to\your\project
+
+:: Delete old venv
+rmdir /s /q .venv
+
+:: Recreate with new Python
+python -m venv .venv
+
+:: Activate
+.venv\Scripts\activate
+
+:: Reinstall dependencies
+pip install -r requirements.txt
+```
+
+---
+
+### Step 9 — (Optional) Uninstall Old Python
+
+1. Open **Settings → Apps → Installed Apps**
+2. Search for the old Python version (e.g. `Python 3.13`)
+3. Click the **three dots (⋯)** → **Uninstall**
+4. Confirm, then verify the new Python still works:
+
+```cmd
+python --version
+where python
+```
+
+---
+
+## 8. What is the clangd Extension?
 
 ### Overview
 
@@ -621,7 +790,7 @@ CompileFlags:
 
 ---
 
-## 8. Rainbow CSV Extension
+## 9. Rainbow CSV Extension
 
 ### What It Does
 
@@ -715,7 +884,7 @@ Access via `Ctrl+Shift+P`:
 
 ---
 
-## 9. Remote - SSH Extension
+## 10. Remote - SSH Extension
 
 ### What It Does
 
@@ -944,7 +1113,7 @@ These names (`my-server`, `work-vm`, `cloud-gpu`) appear in VS Code's "Connect t
 
 ---
 
-## 10. Using GitHub in VS Code
+## 11. Using GitHub in VS Code
 
 ### Prerequisites
 
