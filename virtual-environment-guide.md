@@ -60,6 +60,8 @@ You should see `(venv)` appear in your terminal prompt.
 python -m pip install --upgrade pip
 ```
 
+> **📝 Where to run this:** Run from your **project folder** (e.g., `C:\Users\timmy\project\`), not inside the `venv/` folder. Once the venv is activated (you see `(venv)` in your prompt), `python` and `pip` automatically point to the venv's executables — no need to navigate into `venv/` at all.
+
 **5. Install your packages:**
 ```bash
 pip install flask requests numpy    # replace with your packages
