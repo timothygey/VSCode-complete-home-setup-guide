@@ -695,6 +695,12 @@ where python        # Windows CMD
 # C:\Users\timothygey\my-project\venv\Scripts\python.exe
 ```
 
+> **📝 Windows PowerShell users:** `where` is a CMD command and returns no output in PowerShell. Use this instead:
+> ```powershell
+> Get-Command python
+> ```
+> Check that the `Source` path points to your venv's `Scripts\python.exe` — this confirms Python is correctly scoped to your virtual environment.
+
 #### Step 5 — VS Code Python Interpreter (One-Time Setup)
 
 VS Code needs to know which Python interpreter to use for IntelliSense, linting, and debugging:
