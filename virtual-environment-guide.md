@@ -726,7 +726,24 @@ With this enabled, opening a new terminal in VS Code automatically activates `ve
 
 #### Step 7 — Work on Your Code
 
-You're ready! Edit, run, and debug as normal. All `pip install` commands will install into the virtual environment.
+You're ready! Create your `.py` files directly in the **project root folder** — the same folder that contains `venv/`, not inside it.
+
+**Your project structure should look like this:**
+```
+my-project/                  ← your project root (open this in VS Code)
+├── venv/                    ← virtual environment (never edit files inside here)
+├── main.py                  ← your Python files go HERE
+├── helper.py                ← additional modules alongside main.py
+├── requirements.txt         ← dependency list (commit to Git)
+└── .gitignore               ← should include venv/
+```
+
+**To run your script** (with venv activated):
+```powershell
+python main.py
+```
+
+All `pip install` commands and `import` statements will use the packages installed in your virtual environment.
 
 #### Step 8 — Before Closing: Update Dependencies
 
